@@ -83,14 +83,15 @@ var plotSize = 2;
   function plot(x1,y1,x2,y2,x3,y3,x4,y4){
     var buffer = '';
     var text = '';
-    for(i=0;i<x1.length;i++){
+    for(i=0;i<x1.length - 1;i++){
 
-      buffer += '</br>' + 'newbuffer' + '</br>';
+      buffer += 'newbuffer' + '</br>';
       //curve
       text += 'addvalue ' + i + ' ' + x1[i] + ' ' + y1[i] + '</br>';
+      text += 'addvalue ' + i + ' ' + x1[i + 1] + ' ' + y1[i +1] + '</br>';
      }
-      var extra = 'blinewidth 2 all' + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize + '</br>' + 'range y ' + -plotSize + ' ' + plotSize;
-      var end = extra + buffer + text;
+      var extra = 'blinewidth 0.5 all' + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize + '</br>' + 'range y ' + -plotSize + ' ' + plotSize;
+      var end = buffer + text + extra;
       return end
     }
     var ready = plot(objOut.a.x,objOut.a.y)
