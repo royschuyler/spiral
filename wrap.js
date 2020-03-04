@@ -1,3 +1,4 @@
+var finalCount = 0;
 function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
 
   var obj = {
@@ -38,8 +39,8 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
   //MAKING WRAPS
   var wrapAx = wrapXFun(wrapRadArr,aAndBStart,pathx,1);
   var wrapAy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,1);
-  var wrapBx = wrapXFun(wrapRadArr,ringStart,pathx,bAndDSize);
-  var wrapBy = wrapYFun(pathx,e,wrapRadArr,ringStart,pathy,bAndDSize);
+  var wrapBx = wrapXFun(wrapRadArr,aAndBStart,pathx,bAndDSize);
+  var wrapBy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,bAndDSize);
   var wrapCx = wrapXFun(wrapRadArr,cAndDStart,pathx,1);
   var wrapCy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,1);
   var wrapDx = wrapXFun(wrapRadArr,cAndDStart,pathx,bAndDSize);
@@ -73,13 +74,14 @@ var a = 1.6;
 var f1 = 1;
 var f2 = 1.1;
 var bAndDSize = 0.85;
-var baseRingStart = 15;
-var ringStart = 0;
-var aToCAdd = 15;
+var baseRingStart = radians(30);
+var ringStart = radians(30);
+var aToCAdd = radians(15);
 
 var objOut = makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd)
   //*************PLOT STUFF************************************
 var plotSize = 2;
+var finalCount = 0;
   function plot(x1,y1,x2,y2,x3,y3,x4,y4){
     var buffer = '';
     var text = '';
@@ -87,17 +89,25 @@ var plotSize = 2;
 
       buffer += 'newbuffer' + '</br>';
       //curve
-      text += 'addvalue ' + i + ' ' + x1[i] + ' ' + y1[i] + '</br>';
-      text += 'addvalue ' + i + ' ' + x1[i + 1] + ' ' + y1[i +1] + '</br>';
+      text += 'addvalue ' + finalCount + ' ' + x1[i] + ' ' + y1[i] + '</br>';
+      text += 'addvalue ' + finalCount + ' ' + x1[i + 1] + ' ' + y1[i +1] + '</br>';
+      finalCount++
      }
-      var extra = 'blinewidth 0.5 all' + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize + '</br>' + 'range y ' + -plotSize + ' ' + plotSize;
-      var end = buffer + text + extra;
+      var end = buffer + text;
       return end
     }
-    var ready = plot(objOut.a.x,objOut.a.y)
-    console.log(ready)
+    var readyA = plot(objOut.a.x,objOut.a.y);
+    var readyB = plot(objOut.b.x,objOut.b.y);
+    var readyC = plot(objOut.c.x,objOut.c.y);
+    var readyD = plot(objOut.d.x,objOut.d.y);
+
+    var extra = 'blinewidth 0.5 all' + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize + '</br>' + 'range y ' + -plotSize + ' ' + plotSize;
+
+    var finish = readyA + '</br>' + readyB + '</br>' + readyC + '</br>' + readyD + '</br>' + extra
+
+    console.log(finish)
 
 var element = document.getElementById('p1');
-element.innerHTML = ready + '</br>';
+element.innerHTML = finish + '</br>';
 
 
