@@ -1,4 +1,3 @@
-var finalCount = 0;
 function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
 
   var obj = {
@@ -19,10 +18,11 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
       y: []
     }
   }
+
   //*********************DERIVED*********************
   var e = 1/a;
-  var aAndBStart = baseRingStart + ringStart;
-  var cAndDStart = aAndBStart + aToCAdd;
+  var aAndBStart = radians(baseRingStart + ringStart);
+  var cAndDStart = aAndBStart + radians(aToCAdd);
   var conicE = sqrt((a*a)-1)/a;
   var radUse = radians(180)/d;
   var numbersArr = numbers(0,d,1);
@@ -66,48 +66,27 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
   obj.d.y.reverse();
 
   return obj
+
 }
 
-var d = 100;
-var n = 3;
-var a = 1.6;
-var f1 = 1;
-var f2 = 1.1;
-var bAndDSize = 0.85;
-var baseRingStart = radians(30);
-var ringStart = radians(30);
-var aToCAdd = radians(15);
 
-var objOut = makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd)
   //*************PLOT STUFF************************************
-var plotSize = 2;
-var finalCount = 0;
-  function plot(x1,y1,x2,y2,x3,y3,x4,y4){
-    var buffer = '';
-    var text = '';
-    for(i=0;i<x1.length - 1;i++){
 
-      buffer += 'newbuffer' + '</br>';
-      //curve
-      text += 'addvalue ' + finalCount + ' ' + x1[i] + ' ' + y1[i] + '</br>';
-      text += 'addvalue ' + finalCount + ' ' + x1[i + 1] + ' ' + y1[i +1] + '</br>';
-      finalCount++
-     }
-      var end = buffer + text;
-      return end
-    }
-    var readyA = plot(objOut.a.x,objOut.a.y);
-    var readyB = plot(objOut.b.x,objOut.b.y);
-    var readyC = plot(objOut.c.x,objOut.c.y);
-    var readyD = plot(objOut.d.x,objOut.d.y);
+function plot(x,y){
+  var buffer = '';
+  var text = '';
+  for(i=0;i<x.length - 1;i++){
 
-    var extra = 'blinewidth 0.5 all' + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize + '</br>' + 'range y ' + -plotSize + ' ' + plotSize;
+    buffer += 'newbuffer' + '</br>';
+    //curve
+    text += 'addvalue ' + finalCount + ' ' + x[i] + ' ' + y[i] + '</br>';
+    text += 'addvalue ' + finalCount + ' ' + x[i + 1] + ' ' + y[i +1] + '</br>';
+    finalCount++
+   }
+    var line = buffer + text;
+    return line
+  }
 
-    var finish = readyA + '</br>' + readyB + '</br>' + readyC + '</br>' + readyD + '</br>' + extra
 
-    console.log(finish)
-
-var element = document.getElementById('p1');
-element.innerHTML = finish + '</br>';
 
 
