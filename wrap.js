@@ -1,4 +1,4 @@
-function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
+function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor){
 
   var obj = {
     a: {
@@ -37,12 +37,12 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
   var wrapRadArr = wrapRad(ww2);
 
   //MAKING WRAPS
-  var wrapAx = wrapXFun(wrapRadArr,aAndBStart,pathx,1);
-  var wrapAy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,1);
+  var wrapAx = wrapXFun(wrapRadArr,aAndBStart,pathx,sizeForColor);
+  var wrapAy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,sizeForColor);
   var wrapBx = wrapXFun(wrapRadArr,aAndBStart,pathx,bAndDSize);
   var wrapBy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,bAndDSize);
-  var wrapCx = wrapXFun(wrapRadArr,cAndDStart,pathx,1);
-  var wrapCy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,1);
+  var wrapCx = wrapXFun(wrapRadArr,cAndDStart,pathx,sizeForColor);
+  var wrapCy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,sizeForColor);
   var wrapDx = wrapXFun(wrapRadArr,cAndDStart,pathx,bAndDSize);
   var wrapDy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,bAndDSize);
 
@@ -69,23 +69,77 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
 
 }
 
+  //*************SIMPLE PLOT************************************
 
-  //*************PLOT STUFF************************************
-
-function plot(x,y){
+function plotSimple(x,y){
   var buffer = '';
   var text = '';
+  var color = 0;
+  var width = 1;
   for(i=0;i<x.length - 1;i++){
 
     buffer += 'newbuffer' + '</br>';
     //curve
     text += 'addvalue ' + finalCount + ' ' + x[i] + ' ' + y[i] + '</br>';
     text += 'addvalue ' + finalCount + ' ' + x[i + 1] + ' ' + y[i +1] + '</br>';
+    text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
+    text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
+
     finalCount++
    }
     var line = buffer + text;
     return line
   }
+
+
+
+  //*************HARD PLOT************************************
+
+function plotHard(x1,y1,x2,y2,x3,y3,x4,y4){
+  var buffer = '';
+  var text = '';
+  var color = 1;
+  var width = 1;
+
+  for(i=0;i<x1.length - 1;i++){
+
+      buffer += 'newbuffer' + '</br>';
+      buffer += 'newbuffer' + '</br>';
+      buffer += 'newbuffer' + '</br>';
+      buffer += 'newbuffer' + '</br>';
+      buffer += 'newbuffer' + '</br>';
+      //a to c
+      text += 'addvalue ' + finalCount + ' ' + x1[i] + ' ' + y1[i] + '</br>';
+      text += 'addvalue ' + finalCount + ' ' + x2[i] + ' ' + y2[i] + '</br>';
+      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
+      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
+
+      finalCount++
+      //c to d
+      text += 'addvalue ' + finalCount + ' ' + x2[i] + ' ' + y2[i] + '</br>';
+      text += 'addvalue ' + finalCount + ' ' + x3[i] + ' ' + y3[i] + '</br>';
+      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
+      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
+
+      finalCount++
+     //d to b
+      text += 'addvalue ' + finalCount + ' ' + x3[i] + ' ' + y3[i] + '</br>';
+      text += 'addvalue ' + finalCount + ' ' + x4[i] + ' ' + y4[i] + '</br>';
+      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
+      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
+
+      finalCount++
+     //b to a
+      text += 'addvalue ' + finalCount + ' ' + x4[i] + ' ' + y4[i] + '</br>';
+      text += 'addvalue ' + finalCount + ' ' + x1[i] + ' ' + y1[i] + '</br>';
+      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
+      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
+
+   }
+    var line = buffer + text;
+    return line
+  }
+
 
 
 
