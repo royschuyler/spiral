@@ -33,3 +33,18 @@ function wrapYFun(pathx,e,wrapRad,radStart,pathy,size){
   } return box
 }
 
+function twistIt(x,y,t){
+  var obj = {
+    x: x.map(a => a),
+    y: y.map(a => a),
+  }
+  var objOut = {
+    x: [],
+    y: []
+  }
+  for(i=0;i<obj.x.length;i++){
+    objOut.x.push((obj.x[i]*cos(t)) + (obj.y[i] * sin(t)));
+    objOut.y.push((-obj.x[i]*sin(t)) + (obj.y[i] * cos(t)));
+  }
+  return objOut
+}

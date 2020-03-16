@@ -19,7 +19,7 @@ function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wr
     }
   }
 
-  //*********************DERIVED*********************
+  //*********************DERIVED From input vars and WrapLib*********************
   var e = 1/a;
   var aAndBStart = radians(baseRingStart + ringStart);
   var cAndDStart = aAndBStart + radians(aToCAdd);
@@ -32,7 +32,7 @@ function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wr
   var pathy = arrCos(pathRadArr,conicE);
   var wrapRadArr = numbers(0,d,wrapRadUse);
 
-  //MAKING WRAPS
+  //MAKING WRAPS *** See WrapLib
   var wrapAx = wrapXFun(wrapRadArr,aAndBStart,pathx,sizeForColor);
   var wrapAy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,sizeForColor);
   var wrapBx = wrapXFun(wrapRadArr,aAndBStart,pathx,bAndDSize);
@@ -52,8 +52,7 @@ function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wr
   obj.c.y = wrapCy;
   obj.d.y = wrapDy;
 
-  // console.log(obj)
-
+  /*
   obj.a.x.reverse();
   obj.b.x.reverse();
   obj.c.x.reverse();
@@ -62,33 +61,11 @@ function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wr
   obj.b.y.reverse();
   obj.c.y.reverse();
   obj.d.y.reverse();
+  */
 
   return obj
 
 }
-
-  //*************SIMPLE PLOT************************************
-
-function plotSimple(x,y){
-  var buffer = '';
-  var text = '';
-  var color = 0;
-  var width = 1;
-  for(i=0;i<x.length - 1;i++){
-
-    buffer += 'newbuffer' + '</br>';
-    //curve
-    text += 'addvalue ' + finalCount + ' ' + x[i] + ' ' + y[i] + '</br>';
-    text += 'addvalue ' + finalCount + ' ' + x[i + 1] + ' ' + y[i +1] + '</br>';
-    text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
-    text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
-
-    finalCount++
-   }
-    var line = buffer + text;
-    return line
-  }
-
 
 
 
