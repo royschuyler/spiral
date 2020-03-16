@@ -5,31 +5,6 @@ function numbers (start, end, n){
   } return arr
 }
 
-function fancyNumbers (arr,f){
-  var box = [];
-  for(i = 0; i < arr.length; i++){
-    box.push( 1-Math.pow(cos(arr[i]),f) )
-  } return box
-}
-
-function fancyww1 (arr,f,n){
-  var box = [];
-  for(i = 0; i < arr.length; i++){
-    box.push( n*(Math.pow(sin(arr[i]),f)) )
-  } return box
-}
-
-function fancyww2 (arr){
-  var box = [];
-  for(i = 0; i < arr.length; i++){
-    if(radians(1/arr[i]) != Infinity){
-    box.push( radians(1/arr[i]) )
-    }else{
-      box.push( 0 )
-    }
-  } return box
-}
-
 function wrapRad(arr){
   var box1 = [];
   for(i = 0; i < arr.length; i++){
@@ -63,6 +38,7 @@ function arrCos(arr,n){
     box.push(cos(arr[i])*n)
   } return box
 }
+
 
 function wrapXFun(arr,add,multiply,size){
   var box = [];

@@ -1,4 +1,4 @@
-function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor){
+function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wrapTotal){
 
   var obj = {
     a: {
@@ -25,16 +25,12 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeFor
   var cAndDStart = aAndBStart + radians(aToCAdd);
   var conicE = sqrt((a*a)-1)/a;
   var radUse = radians(180)/d;
+  var wrapRadUse = radians(wrapTotal)/d;
   var numbersArr = numbers(0,d,1);
-  var radUseArr = numbers(0,d,radUse);
-  var oneMinusCos = fancyNumbers(radUseArr,f1);
-  var pathNum = arrMultiply(oneMinusCos,d/2);
-  var pathRad = arrMultiply(pathNum,radUse);
-  var pathx = arrSin(pathRad);
-  var pathy = arrCos(pathRad,conicE);
-  var ww1 = fancyww1(radUseArr,f2,n);
-  var ww2 = fancyww2(ww1);
-  var wrapRadArr = wrapRad(ww2);
+  var pathRadArr = numbers(0,d,radUse);
+  var pathx = arrSin(pathRadArr);
+  var pathy = arrCos(pathRadArr,conicE);
+  var wrapRadArr = numbers(0,d,wrapRadUse);
 
   //MAKING WRAPS
   var wrapAx = wrapXFun(wrapRadArr,aAndBStart,pathx,sizeForColor);
@@ -55,6 +51,8 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeFor
   obj.b.y = wrapBy;
   obj.c.y = wrapCy;
   obj.d.y = wrapDy;
+
+  // console.log(obj)
 
   obj.a.x.reverse();
   obj.b.x.reverse();
@@ -86,55 +84,6 @@ function plotSimple(x,y){
     text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
 
     finalCount++
-   }
-    var line = buffer + text;
-    return line
-  }
-
-
-
-  //*************HARD PLOT************************************
-
-function plotHard(x1,y1,x2,y2,x3,y3,x4,y4){
-  var buffer = '';
-  var text = '';
-  var color = 1;
-  var width = 1;
-
-  for(i=0;i<x1.length - 1;i++){
-
-      buffer += 'newbuffer' + '</br>';
-      buffer += 'newbuffer' + '</br>';
-      buffer += 'newbuffer' + '</br>';
-      buffer += 'newbuffer' + '</br>';
-      buffer += 'newbuffer' + '</br>';
-      //a to c
-      text += 'addvalue ' + finalCount + ' ' + x1[i] + ' ' + y1[i] + '</br>';
-      text += 'addvalue ' + finalCount + ' ' + x2[i] + ' ' + y2[i] + '</br>';
-      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
-      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
-
-      finalCount++
-      //c to d
-      text += 'addvalue ' + finalCount + ' ' + x2[i] + ' ' + y2[i] + '</br>';
-      text += 'addvalue ' + finalCount + ' ' + x3[i] + ' ' + y3[i] + '</br>';
-      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
-      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
-
-      finalCount++
-     //d to b
-      text += 'addvalue ' + finalCount + ' ' + x3[i] + ' ' + y3[i] + '</br>';
-      text += 'addvalue ' + finalCount + ' ' + x4[i] + ' ' + y4[i] + '</br>';
-      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
-      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
-
-      finalCount++
-     //b to a
-      text += 'addvalue ' + finalCount + ' ' + x4[i] + ' ' + y4[i] + '</br>';
-      text += 'addvalue ' + finalCount + ' ' + x1[i] + ' ' + y1[i] + '</br>';
-      text += 'bcolor ' + color + ' ' + color + ' ' + color + ' ' + finalCount + '</br>'
-      text += 'blinewidth ' + width + ' ' + finalCount + '</br>';
-
    }
     var line = buffer + text;
     return line
