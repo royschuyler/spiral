@@ -1,4 +1,4 @@
-function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wrapTotal){
+function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wrapTotal,tilt){
 
   var obj = {
     a: {
@@ -43,25 +43,17 @@ function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wr
   var wrapDy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,bAndDSize);
 
   //PUTING WRAPS IN OBJ
-  obj.a.x = wrapAx;
-  obj.b.x = wrapBx;
-  obj.c.x = wrapCx;
-  obj.d.x = wrapDx;
-  obj.a.y = wrapAy;
-  obj.b.y = wrapBy;
-  obj.c.y = wrapCy;
-  obj.d.y = wrapDy;
+  obj.a = twistIt(wrapAx,wrapAy,tilt);
+  obj.b = twistIt(wrapBx,wrapBy,tilt);
+  obj.c = twistIt(wrapCx,wrapCy,tilt);
+  obj.d = twistIt(wrapDx,wrapDy,tilt);
 
-  /*
-  obj.a.x.reverse();
-  obj.b.x.reverse();
-  obj.c.x.reverse();
-  obj.d.x.reverse();
-  obj.a.y.reverse();
-  obj.b.y.reverse();
-  obj.c.y.reverse();
-  obj.d.y.reverse();
-  */
+  // obj.a.y = wrapAy;
+  // obj.b.y = wrapBy;
+  // obj.c.y = wrapCy;
+  // obj.d.y = wrapDy;
+
+
 
   return obj
 

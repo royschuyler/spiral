@@ -2,23 +2,24 @@ console.log('hello world')
 var finalCount = 0;
 var keep = 360;
 var plotSize = 2;
-var d = 200;
+var d = 150;
 var a = 1.272;
 var bAndDSize = 0.85;
 var aToCAdd = 15;
-var baseRingStart = 35;
+var baseRingStart = 100;
 var endText = '';
 var wrapTotal = 160; 
 var windowHeight = 500;
-var windowWidth = 750;
+var windowWidth = 700;
 var lineWidth = .5;
+var tilt = radians(-15)
 
 
 function plotRing(start){
 
 	var ringStart = start;
 
-	var objOut = makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,1,wrapTotal);
+	var objOut = makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,1,wrapTotal,tilt);
 
 	endText += plotSimple(objOut.a.x,objOut.a.y) + '</br>';
 	endText += plotSimple(objOut.b.x,objOut.b.y) + '</br>';
