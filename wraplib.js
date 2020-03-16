@@ -5,26 +5,6 @@ function numbers (start, end, n){
   } return arr
 }
 
-function wrapRad(arr){
-  var box1 = [];
-  for(i = 0; i < arr.length; i++){
-    if(i == 0){
-      box1.push(0)
-    }else if(i == 1){
-      box1.push(arr[i])
-    }else{
-      box1.push(arr[i]+box1[i-1])
-    }
-  } return box1
-}
-
-function arrMultiply(arr,n){
-  var box = [];
-  for(i = 0; i < arr.length; i++){
-    box.push( arr[i]*n )
-  } return box
-}
-
 function arrSin(arr){
   var box = [];
   for(i = 0; i < arr.length; i++){
@@ -38,7 +18,6 @@ function arrCos(arr,n){
     box.push(cos(arr[i])*n)
   } return box
 }
-
 
 function wrapXFun(arr,add,multiply,size){
   var box = [];
