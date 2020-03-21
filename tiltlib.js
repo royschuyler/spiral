@@ -3,11 +3,13 @@ function ellipse(d,a,size,yCentered) {
   var use = radians(360)/d;
   var obj = {
     x: [],
-    y: []
+    y: [],
+    t: []
   }
   for(i=0;i<=d;i++){
     obj.x.push(sin(i*use)*size);
     obj.y.push((cos(i*use)*size*e)+yCentered);
+    obj.t.push(atan(sin(i*use)*size/(cos(i*use)*size*e)+yCentered))
   }
   return obj
 }
@@ -26,4 +28,18 @@ function twistIt(x,y,t){
     objOut.y.push((-obj.x[i]*sin(t)) + (obj.y[i] * cos(t)));
   }
   return objOut
+}
+
+function getTilt(d,s,a,keep,yCentered){
+  var arr = [];
+  var use = keep/d;
+  var e = 1/a;
+
+  for(i=0;i<d;i++){
+    var x = s*sin(use*i);
+    var y = yCentered+(cos(use*i)*e);
+    var t = atan(x/y);
+    arr.push(t);
+  }
+  return arr
 }

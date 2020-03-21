@@ -48,13 +48,6 @@ function makeShape(d,a,bAndDSize,baseRingStart,ringStart,aToCAdd,sizeForColor,wr
   obj.c = twistIt(wrapCx,wrapCy,tilt);
   obj.d = twistIt(wrapDx,wrapDy,tilt);
 
-  // obj.a.y = wrapAy;
-  // obj.b.y = wrapBy;
-  // obj.c.y = wrapCy;
-  // obj.d.y = wrapDy;
-
-
-
   return obj
 
 }
