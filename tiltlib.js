@@ -29,17 +29,3 @@ function twistIt(x,y,t){
   }
   return objOut
 }
-
-function getTilt(d,s,a,keep,yCentered){
-  var arr = [];
-  var use = keep/d;
-  var e = 1/a;
-
-  for(i=0;i<d;i++){
-    var x = s*sin(use*i);
-    var y = yCentered+(cos(use*i)*e);
-    var t = atan(x/y);
-    arr.push(t);
-  }
-  return arr
-}
