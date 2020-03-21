@@ -9,7 +9,7 @@ function ellipse(d,a,size,yCentered) {
   for(i=0;i<=d;i++){
     obj.x.push(sin(i*use)*size);
     obj.y.push((cos(i*use)*size*e)+yCentered);
-    obj.t.push(atan(sin(i*use)*size/(cos(i*use)*size*e)+yCentered))
+    obj.t.push(atan((sin(i*use)*size)/((cos(i*use)*size*e)+yCentered)))
   }
   return obj
 }
