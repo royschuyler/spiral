@@ -1,6 +1,6 @@
 var last = '';
 var finalCount = 0; //keep
-var ellipseD = 4; //keep
+var ellipseD = 2; //keep
 
 function multiple(ticker){
 	console.log('hello world')
@@ -15,7 +15,7 @@ function multiple(ticker){
 	var baseRingStart = 4; //keep
 	var endText = ''; //keep
 	var ellipseA = 1.272; //keep
-	var ellipseD = 4; //keep
+	var ellipseD = 2; //keep
 	var ellipseSize = .1; //keep
 	var numberOfRings = 5; //keep
 	var spins = 1; //keep
@@ -40,8 +40,9 @@ function multiple(ticker){
 		plotRing((keep/numberOfRings)*k);
 	}
 
-	var extra = 'blinewidth ' + lineWidth + ' all' + '</br>' + 'windowsize ' + windowWidth + ' ' + windowHeight + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize+ '</br>' + 'range y ' + -plotSize + ' ' + plotSize + '</br>' + '</br>';
-	var finish = 'new' + '</br>' + endText + '</br>' + extra;
+	var location = '</br>' + 'savejpg /Users/thomasschuyler/Desktop/auto2/' + ticker + '.jpg 2' + '</br>' + 'close' + '</br>';
+	var extra = 'blinewidth ' + lineWidth + ' all' + '</br>' + 'windowsize ' + windowWidth + ' ' + windowHeight + '</br>' + 'drawframe no' + '</br>' + 'asetticks x no' + '</br>' + 'asetticks y no' + '</br>' + 'asetminticks x no' + '</br>' + 'asetminticks y no' + '</br>' +'framewidth 0' + '</br>' + 'bstyle yes no no no no no no yes no no 0' + '</br>' + 'margins 0 0 0 0' + '</br>' + 'range x '  + -plotSize + ' ' + plotSize+ '</br>' + 'range y ' + -plotSize + ' ' + plotSize + '</br>';
+	var finish = 'new' + '</br>' + endText + '</br>' + extra + location;
 
 	return finish
 }
