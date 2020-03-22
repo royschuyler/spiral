@@ -1,6 +1,6 @@
 var last = '';
 var finalCount = 0; //keep
-var ellipseD = 2; //keep
+var ellipseD = 10; //keep
 
 function multiple(ticker){
 	console.log('hello world')
@@ -12,23 +12,25 @@ function multiple(ticker){
 	var d = 50; //keep
 	var bAndDSize = 0.85; //keep
 	var aToCAdd = 15; //keep
-	var baseRingStart = 4; //keep
+	var baseRingStart = 10; //keep
 	var endText = ''; //keep
 	var ellipseA = 1.272; //keep
-	var ellipseD = 2; //keep
-	var ellipseSize = .1; //keep
-	var numberOfRings = 5; //keep
+	var ellipseD = 10; //keep
+	var ellipseSize = .2; //keep
+	var numberOfRings = 3; //keep
 	var spins = 1; //keep
 
 
 	var ellipseFired = ellipse(ellipseD,ellipseA,ellipseSize,yCentered);
-	console.log(ellipseFired);
+	//console.log(ellipseFired);
 	var endText = '';
 	var a = 1/ellipseFired.y[ticker]; //variable
 	var wrapTotal = 140; //variable
 	var tilt = ellipseFired.t[ticker]; //variable
 	var plotSize = 2; //variable
-	var start = baseRingStart + tick(spins,ellipseD)[ticker];
+	var spin = tick(spins,ellipseD);
+	var start = baseRingStart + spin[ticker];
+	//console.log(start)
 
 	function plotRing(start){
 		var objOut = makeShape(d,a,bAndDSize,baseRingStart,start,aToCAdd,1,wrapTotal,tilt);
@@ -37,7 +39,9 @@ function multiple(ticker){
 
 	
 	for(k=0;k<numberOfRings;k++){
-		plotRing((keep/numberOfRings)*k);
+		var startUse = ((keep/numberOfRings)*k)+start;
+		console.log(startUse);
+		plotRing(startUse);
 	}
 
 	var location = '</br>' + 'savejpg /Users/thomasschuyler/Desktop/auto2/' + ticker + '.jpg 2' + '</br>' + 'close' + '</br>';
